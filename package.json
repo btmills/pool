@@ -1,0 +1,26 @@
+{
+  "name": "rethinkdb-pool",
+  "version": "0.0.1",
+  "description": "Connection pool for RethinkDB's JS driver",
+  "main": "lib/pool.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "rethinkdb": "~1.4.0-1",
+    "queue": "git://github.com/btmills/queue.git"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btmills/pool.git"
+  },
+  "author": "Brandon Mills",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

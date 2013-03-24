@@ -1,7 +1,7 @@
-(
- 	define: if typeof define == 'function' then define \
+# Module patch based on http://www.2ality.com/2011/11/module-gap.html
+({ define: if typeof define == 'function' then define \
  		else (A, F) -> module.exports = F.apply(null, A.map(require))
-).define ['rethinkdb', './queue'], (r, Queue) ->
+}).define ['rethinkdb', 'queue'], (r, Queue) ->
 
 	'use strict'
 
@@ -26,7 +26,7 @@
 				q.enqueue callback
 
 		done = (conn) ->
-			if q.length > 0
+			if q.length() > 0
 				process.nextTick ->
 					(q.dequeue())(conn)
 			else
@@ -35,6 +35,7 @@
 		close = ->
 			while pool.length > 0
 				(pool.pop()).close()
+			return # Don't stack result of loop
 
 		return {
 			init: init
